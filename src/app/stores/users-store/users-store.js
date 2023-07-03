@@ -1,4 +1,5 @@
 import { USER_TOKEN } from "../../core/consts/keys"
+
 export class UsersStore {
     static user = {};
 

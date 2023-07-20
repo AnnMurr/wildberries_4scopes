@@ -5,6 +5,7 @@ import { createForm } from '../../core/utils/authentication/create-form.js'
 import { changeToken } from '../../core/utils/authentication/change-token.js'
 import { successAuthentication } from '../../core/utils/authentication/success-authentication.js'
 import { linkStoreToUserData } from "../../core/utils/order/order.js"
+import { setBodyStyles } from '../burger/burger.js'
 
 const registrationWrapper = document.querySelector('.user__registration')
 const btnClose = document.querySelector('.user__registration-btn-close')
@@ -78,13 +79,15 @@ async function addInputsValues() {
         errorMessageRegistrationLogin.textContent = `Пользователь с логином "${person.login}" уже зарегистрирован`
     } else {
         AuthenticationApi.setUser(person.login, person.password, person.token)
-        .then(() => successAuthentication('.user__registration-form', 'Регистрация прошла успешно \u2611'))
+            .then(() => successAuthentication('.user__registration-form', 'Регистрация прошла успешно \u2611'))
+        setBodyStyles(null, null, null)
+        
         UsersStore.setTokenStore(person.token)
 
         setTimeout(() => {
             changeToken()
             linkStoreToUserData()
-        } , 3000)
+        }, 3000)
     }
 }
 
@@ -108,7 +111,7 @@ function showPassword() {
 }
 
 function resetForm() {
-    registrationForm = document.querySelector('.user__registration-form')
+    const registrationForm = document.querySelector('.user__registration-form')
     if (registrationForm) {
         registrationForm.reset()
         document.querySelector('[data-input="1"]').type = 'password'
@@ -135,7 +138,7 @@ function submitForm(event) {
 }
 
 function init() {
-    createForm('user__registration-form',  REGISTRATION_OPTIONS, registrationWrapper)
+    createForm('user__registration-form', REGISTRATION_OPTIONS, registrationWrapper)
     showPassword()
     changeToken()
 }

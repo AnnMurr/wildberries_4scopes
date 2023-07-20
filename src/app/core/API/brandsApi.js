@@ -5,6 +5,6 @@ export class BrandApi {
         return await fetch(this.url)
         .then(resolve => resolve.json())
     
-        .catch(error => console.log(error))
+        .catch(error => {throw error})
     }
 }

@@ -5,7 +5,6 @@ const swiperWrapper = document.querySelector('.swiper-wrapper')
 
 export function createSlider(imageInner) {
     swiperWrapper.appendChild(imageInner)
-    loadContent()
 }
 
 function createImageInner(url, alt) {
@@ -26,6 +25,7 @@ async function createImage() {
             createImageInner(element.url, element.alt)
       })
     })
+    .then(loadContent)
     .catch(error => {throw error})
 }
 

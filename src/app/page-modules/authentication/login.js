@@ -5,6 +5,7 @@ import { createForm } from '../../core/utils/authentication/create-form.js'
 import { changeToken } from '../../core/utils/authentication/change-token.js'
 import { successAuthentication } from '../../core/utils/authentication/success-authentication.js'
 import { AlertService } from '../../core/services/alert-service/alertService.js'
+import { setBodyStyles } from '../burger/burger.js'
 
 const loginWrapper = document.querySelector('.user__login')
 const btnClose = document.querySelector('.user__login-btn-close')
@@ -66,6 +67,8 @@ async function singIn() {
     } else {
         successAuthentication('.user__login-form', 'Вы вошли \u2713')
         AlertService.access('Вы вошли \u2713')
+        setBodyStyles(null, null, null)
+       
         UsersStore.setTokenStore(userData.token)
         localStorage.setItem('basketStore', JSON.stringify(userData.orders))
         changeToken()

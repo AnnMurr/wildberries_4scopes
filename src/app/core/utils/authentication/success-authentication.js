@@ -1,3 +1,6 @@
+const loginWrapper = document.querySelector('.user__login')
+const registrationWrapper = document.querySelector('.user__registration')
+
 export function successAuthentication(formClass, message) {
     const form = document.querySelector(formClass)
     const parent = form.parentNode
@@ -11,5 +14,7 @@ export function successAuthentication(formClass, message) {
     parent.append(successContainer)
     setTimeout(function () {
         parent.remove()
+        loginWrapper.classList.remove('user__login_active')
+        registrationWrapper.classList.remove('user__registration_active')
     }, 3000)
 }

@@ -1,3 +1,5 @@
+import Swiper from './swiper-bundle.min.js'
+
 export function loadContent() {
   const swiper = new Swiper(".mySwiper", {
     slidesPerView: 1,
